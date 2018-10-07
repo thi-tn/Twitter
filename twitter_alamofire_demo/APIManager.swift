@@ -15,8 +15,8 @@ import KeychainAccess
 class APIManager: SessionManager {
     
     // MARK: TODO: Add App Keys
-    static let consumerKey = "YOUR_KEY_HERE"
-    static let consumerSecret = "YOUR_SECRET_HERE"
+    static let consumerKey = "ZOW591WArJ9e1Ug3mBVzZQL3o"
+    static let consumerSecret = "ylJriNsjA4GUDhvhr8jnoa98Mj6UFe6qqkHsdM4VtUoCBeoiox"
 
     static let requestTokenURL = "https://api.twitter.com/oauth/request_token"
     static let authorizeURL = "https://api.twitter.com/oauth/authorize"
@@ -191,6 +191,16 @@ class APIManager: SessionManager {
         } catch let error {
             print("error: \(error)")
         }
+    }
+    
+    static func logout() {
+        // 1. Clear current user
+        User.current = nil
+        
+        // TODO: 2. Deauthorize OAuth tokens
+        
+        // 3. Post logout notification
+        NotificationCenter.default.post(name: NSNotification.Name("didLogout"), object: nil)
     }
 }
 
