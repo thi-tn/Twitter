@@ -12,7 +12,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var tweets: [Tweet]!
     var refreshControl: UIRefreshControl!
-    
+   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tweets != nil {
             return tweets.count

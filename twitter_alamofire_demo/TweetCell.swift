@@ -17,6 +17,32 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBAction func didTapRetweet(_ sender: Any) {
+        tweet.retweeted = true
+        tweet.retweetCount = tweet.retweetCount! + 1
+        (sender as AnyObject).setImage(UIImage(named: "retweet-icon-red"), for: UIControlState.normal)
+        APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+            if let  error = error {
+                print("Error favoriting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+            }
+        }
+    }
+    @IBAction func didTapFavorite(_ sender: Any) {
+        tweet.favorited = true
+        tweet.favoriteCount = tweet.favoriteCount! + 1
+        (sender as AnyObject).setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+        APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+            if let  error = error {
+                print("Error favoriting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+            }
+        }
+    }
     
     var tweet: Tweet! {
         didSet {
@@ -27,6 +53,10 @@ class TweetCell: UITableViewCell {
             self.timeLabel.text = tweet.createdAtString
         }
     }
+    
+//    func refreshData() {
+//        retweetButton.setImage(UIImage(named: "favor-icon-red"), for: isSelected)
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
