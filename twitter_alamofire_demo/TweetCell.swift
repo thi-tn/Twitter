@@ -21,30 +21,58 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var favoriteCountLabel: UILabel!
     
     @IBAction func didTapRetweet(_ sender: Any) {
-        tweet.retweeted = true
-        tweet.retweetCount = tweet.retweetCount! + 1
-        (sender as AnyObject).setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
-        retweetCountLabel.text = String(tweet.retweetCount as! Int)
-        APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
-            if let  error = error {
-                print("Error favoriting tweet: \(error.localizedDescription)")
-            } else if let tweet = tweet {
-                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+        if tweet.retweeted == true {
+            tweet.retweeted = false
+            tweet.retweetCount = tweet.retweetCount! - 1
+            (sender as AnyObject).setImage(UIImage(named: "retweet-icon"), for: UIControlState.normal)
+            retweetCountLabel.text = String(tweet.retweetCount as! Int)
+            APIManager.shared.unRetweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        } else {
+            tweet.retweeted = true
+            tweet.retweetCount = tweet.retweetCount! + 1
+            (sender as AnyObject).setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
+            retweetCountLabel.text = String(tweet.retweetCount as! Int)
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
             }
         }
     }
     @IBAction func didTapFavorite(_ sender: Any) {
-        tweet.favorited = true
-        tweet.favoriteCount = tweet.favoriteCount! + 1
-        (sender as AnyObject).setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
-         favoriteCountLabel.text = String(tweet.favoriteCount as! Int)
-        APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
-            if let  error = error {
-                print("Error favoriting tweet: \(error.localizedDescription)")
-            } else if let tweet = tweet {
-                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+        if  tweet.favorited == true {
+            tweet.favorited = false
+            tweet.favoriteCount = tweet.favoriteCount! - 1
+            (sender as AnyObject).setImage(UIImage(named: "favor-icon"), for: UIControlState.normal)
+            APIManager.shared.unFavorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
+            }
+        } else {
+            tweet.favorited = true
+            tweet.favoriteCount = tweet.favoriteCount! + 1
+            (sender as AnyObject).setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+            APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                }
             }
         }
+        favoriteCountLabel.text = String(tweet.favoriteCount as! Int)
+        
     }
     
     var tweet: Tweet! {
