@@ -17,12 +17,14 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
-    @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var retweetCountLabel: UILabel!
+    @IBOutlet weak var favoriteCountLabel: UILabel!
+    
     @IBAction func didTapRetweet(_ sender: Any) {
         tweet.retweeted = true
         tweet.retweetCount = tweet.retweetCount! + 1
         (sender as AnyObject).setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
+        retweetCountLabel.text = String(tweet.retweetCount as! Int)
         APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
             if let  error = error {
                 print("Error favoriting tweet: \(error.localizedDescription)")
@@ -35,6 +37,7 @@ class TweetCell: UITableViewCell {
         tweet.favorited = true
         tweet.favoriteCount = tweet.favoriteCount! + 1
         (sender as AnyObject).setImage(UIImage(named: "favor-icon-red"), for: UIControlState.normal)
+         favoriteCountLabel.text = String(tweet.favoriteCount as! Int)
         APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
             if let  error = error {
                 print("Error favoriting tweet: \(error.localizedDescription)")

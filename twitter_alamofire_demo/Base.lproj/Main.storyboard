@@ -103,7 +103,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZsG-pR-QEu">
-                                                    <rect key="frame" x="127" y="74.5" width="30" height="30"/>
+                                                    <rect key="frame" x="128" y="74.5" width="30" height="30"/>
                                                     <state key="normal" image="favor-icon"/>
                                                     <connections>
                                                         <action selector="didTapFavorite:" destination="U1g-kw-izy" eventType="touchUpInside" id="XxW-Vp-XcH"/>
@@ -116,21 +116,37 @@
                                                         <action selector="didTapRetweet:" destination="U1g-kw-izy" eventType="touchUpInside" id="RJb-Sq-Q7b"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="88k-L8-T2t">
+                                                    <rect key="frame" x="114" y="82" width="8" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5J8-bg-qLN">
+                                                    <rect key="frame" x="160" y="82" width="8" height="15"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="c5W-LM-UNM" secondAttribute="bottom" constant="8" id="2Cn-t9-UrB"/>
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="top" secondItem="LdN-Gm-naQ" secondAttribute="bottom" constant="2" id="AFV-eZ-rW2"/>
+                                                <constraint firstItem="5J8-bg-qLN" firstAttribute="leading" secondItem="ZsG-pR-QEu" secondAttribute="trailing" constant="2" id="Aha-E2-e7b"/>
                                                 <constraint firstItem="QRl-XY-Mi7" firstAttribute="top" secondItem="epC-Fs-Q5Z" secondAttribute="bottom" constant="8" id="Je6-VG-Jms"/>
                                                 <constraint firstItem="QRl-XY-Mi7" firstAttribute="leading" secondItem="epC-Fs-Q5Z" secondAttribute="leading" id="MdU-1W-WOG"/>
                                                 <constraint firstItem="aaN-sQ-7WI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xCn-Q8-fPT" secondAttribute="trailing" constant="10" id="P4C-4X-AJW"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="epC-Fs-Q5Z" secondAttribute="bottom" constant="8" id="QRV-cN-t51"/>
                                                 <constraint firstItem="LdN-Gm-naQ" firstAttribute="leading" secondItem="xCn-Q8-fPT" secondAttribute="leading" id="Tol-pz-by7"/>
                                                 <constraint firstItem="aaN-sQ-7WI" firstAttribute="firstBaseline" secondItem="xCn-Q8-fPT" secondAttribute="firstBaseline" id="Yxc-B1-Itb"/>
+                                                <constraint firstItem="88k-L8-T2t" firstAttribute="centerY" secondItem="QRl-XY-Mi7" secondAttribute="centerY" id="ZbY-OR-8Hh"/>
+                                                <constraint firstItem="88k-L8-T2t" firstAttribute="leading" secondItem="QRl-XY-Mi7" secondAttribute="trailing" constant="2" id="aGn-ED-2r8"/>
+                                                <constraint firstItem="5J8-bg-qLN" firstAttribute="centerY" secondItem="ZsG-pR-QEu" secondAttribute="centerY" id="cm3-Th-J8N"/>
                                                 <constraint firstItem="epC-Fs-Q5Z" firstAttribute="leading" secondItem="c5W-LM-UNM" secondAttribute="trailing" constant="8" id="e4L-n1-iBy"/>
+                                                <constraint firstItem="ZsG-pR-QEu" firstAttribute="leading" secondItem="88k-L8-T2t" secondAttribute="trailing" constant="6" id="hZo-fY-g8m"/>
                                                 <constraint firstItem="ZsG-pR-QEu" firstAttribute="centerY" secondItem="QRl-XY-Mi7" secondAttribute="centerY" id="nRb-Yr-0xs"/>
                                                 <constraint firstItem="c5W-LM-UNM" firstAttribute="leading" secondItem="zd2-Er-659" secondAttribute="leading" constant="24" id="nh2-qT-Twy"/>
                                                 <constraint firstAttribute="trailing" secondItem="aaN-sQ-7WI" secondAttribute="trailing" constant="20" id="omZ-MI-Rv0"/>
-                                                <constraint firstItem="ZsG-pR-QEu" firstAttribute="leading" secondItem="QRl-XY-Mi7" secondAttribute="trailing" constant="15" id="pGa-od-kmf"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="QRl-XY-Mi7" secondAttribute="bottom" constant="10" id="sNd-Ev-juN"/>
                                                 <constraint firstAttribute="trailing" secondItem="epC-Fs-Q5Z" secondAttribute="trailing" constant="8" id="t3O-Hf-fvX"/>
                                                 <constraint firstItem="xCn-Q8-fPT" firstAttribute="top" secondItem="zd2-Er-659" secondAttribute="top" constant="10" id="u4E-Qe-iPI"/>
@@ -140,9 +156,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="favoriteButton" destination="QRl-XY-Mi7" id="hEv-NQ-Uma"/>
+                                            <outlet property="favoriteCountLabel" destination="5J8-bg-qLN" id="weZ-Ly-zJ3"/>
                                             <outlet property="profilePicView" destination="c5W-LM-UNM" id="w8d-Jb-ztm"/>
-                                            <outlet property="retweetButton" destination="QRl-XY-Mi7" id="PiY-3N-TGy"/>
+                                            <outlet property="retweetCountLabel" destination="88k-L8-T2t" id="aIy-RP-R16"/>
                                             <outlet property="screenNameLabel" destination="LdN-Gm-naQ" id="ot6-F4-Jg6"/>
                                             <outlet property="timeLabel" destination="aaN-sQ-7WI" id="Oh6-XE-W4y"/>
                                             <outlet property="tweetTextLabel" destination="epC-Fs-Q5Z" id="EMh-7s-s30"/>
