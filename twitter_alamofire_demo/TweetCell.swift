@@ -22,7 +22,7 @@ class TweetCell: UITableViewCell {
     @IBAction func didTapRetweet(_ sender: Any) {
         tweet.retweeted = true
         tweet.retweetCount = tweet.retweetCount! + 1
-        (sender as AnyObject).setImage(UIImage(named: "retweet-icon-red"), for: UIControlState.normal)
+        (sender as AnyObject).setImage(UIImage(named: "retweet-icon-green"), for: UIControlState.normal)
         APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
             if let  error = error {
                 print("Error favoriting tweet: \(error.localizedDescription)")
