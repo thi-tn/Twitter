@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TimelineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ComposeViewControllerDelegate {
     
     var tweets: [Tweet]!
     var refreshControl: UIRefreshControl!
@@ -28,6 +28,9 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
+    func did(post: Tweet) {
+        
+    }
 
     @IBOutlet weak var tableView: UITableView!
     @IBAction func onLogout(_ sender: Any) {
@@ -81,5 +84,16 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let composeViewController = segue.destination as! ComposeViewController
+        composeViewController.delegate = self
+//        let cell = sender as! UITableViewCell
+//        if let indexPath = tableView.indexPath(for: cell) {
+//            let movie = movies[indexPath.row]
+//            let detailViewController = segue.destination as! DetailViewController
+//            detailViewController.movie = movie
+//        }
+    }
 
 }
