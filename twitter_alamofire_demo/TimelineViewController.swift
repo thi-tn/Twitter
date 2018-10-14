@@ -50,6 +50,7 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
         refreshControl.addTarget(self, action: #selector(TimelineViewController.didPulltoRefresh(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
         getTimeline()
+       
     }
 
     func getTimeline() {
@@ -86,14 +87,23 @@ class TimelineViewController: UIViewController, UITableViewDataSource, UITableVi
     */
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let composeViewController = segue.destination as! ComposeViewController
-        composeViewController.delegate = self
-//        let cell = sender as! UITableViewCell
-//        if let indexPath = tableView.indexPath(for: cell) {
-//            let movie = movies[indexPath.row]
-//            let detailViewController = segue.destination as! DetailViewController
-//            detailViewController.movie = movie
-//        }
+        if segue.identifier == "composeSegue" {
+            let destinationNavigationController = segue.destination as! UINavigationController
+            let composeViewController = destinationNavigationController.topViewController as! ComposeViewController
+            composeViewController.delegate = self
+        }
+        else if segue.identifier == "replySegue" {
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell) {
+                let tweet = tweets[indexPath.row]
+                let replyViewNavigationController = segue.destination as! UINavigationController
+                let replyViewController = replyViewNavigationController.topViewController as! ReplyViewController
+                replyViewController.tweet = tweet
+            }
+        }
+    }
+    
+    @IBAction func cancelToTimelineViewController(_ segue: UIStoryboardSegue) {
     }
 
 }

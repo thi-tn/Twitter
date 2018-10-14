@@ -13,8 +13,13 @@ class User {
     // MARK: Properties
     var name: String?
     var screenName: String?
-    var profilePictureUrl: URL
+    var profilePictureUrl: URL?
     var dictionary: [String: Any]?
+    var profileBannerUrl: URL?
+    var description: String?
+    var followerCount: Int?
+    var followingCount: Int?
+    var tweetCount: Int?
     private static var _current: User?
     
     // Add any additional properties here
@@ -24,8 +29,20 @@ class User {
         screenName = dictionary["screen_name"] as? String
         // Initialize any other properties
         //let baseURL = "https://image.tmdb.org/t/p/w500"
-        //let profilePicturePath = dictionary["profile_image_url_https"] as! String
-        profilePictureUrl = URL(string: dictionary["profile_image_url_https"] as! String)!
+        let profilePicturePath = dictionary["profile_image_url_https"] as? String
+        if profilePicturePath != nil {
+            profilePictureUrl = URL(string: dictionary["profile_image_url_https"] as! String)
+        }        
+        let profileBannerPath = dictionary["profile_banner_url"] as? String
+        if profileBannerPath != nil {
+            profileBannerUrl = URL(string: dictionary["profile_banner_url"] as! String)
+        }
+        
+        description = dictionary["description"] as? String
+        followerCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
+        tweetCount = dictionary["statuses_count"] as? Int
+        
     }
     
     static var current: User? {

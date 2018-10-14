@@ -7,30 +7,54 @@
 //
 
 import UIKit
+import AlamofireImage
 
 
-class ComposeViewController: UIViewController {
-   
+class ComposeViewController: UIViewController, UITextViewDelegate {
     
-    @IBAction func didTapPost(_ sender: Any) {
-        APIManager.shared.composeTweet(with: "This is my tweet 😀") { (tweet, error) in
+    @IBOutlet var profilePicImageView: UIImageView!
+    @IBOutlet var userNameLabel: UILabel!
+    @IBOutlet var screenNameLabel: UILabel!
+    @IBOutlet var textView: UITextView!
+    @IBOutlet var charCountLabel: UILabel!
+    
+  
+    weak var delegate: ComposeViewControllerDelegate?
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        APIManager.shared.composeTweet(with: textView.text!) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
                 self.delegate?.did(post: tweet)
                 print("Compose Tweet Success!")
+                
             }
         }
     }
     
-    weak var delegate: ComposeViewControllerDelegate?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        profilePicImageView.af_setImage(withURL: (User.current?.profilePictureUrl)!)
+        userNameLabel.text = User.current?.name
+        screenNameLabel.text = "@" + (User.current?.screenName)!
+        textView.delegate = self
     }
     
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            // Set the max character limit
+            let characterLimit = 140
+            
+            // Construct what the new text would be if we allowed the user's latest edit
+            let newText = NSString(string: textView.text!).replacingCharacters(in: range, with: text)
+            
+            // TODO: Update Character Count Label
+            charCountLabel.text = "Character count: " + String(140 - newText.characters.count)
+            // The new text should be allowed? True/False
+            return newText.characters.count < characterLimit
+    }
+  
     
     /*
     // MARK: - Navigation
@@ -47,10 +71,8 @@ class ComposeViewController: UIViewController {
 
 }
 
-protocol ComposeViewControllerDelegate: class {
-    
+protocol ComposeViewControllerDelegate: NSObjectProtocol {
     func did(post: Tweet)
-    
 }
 
 

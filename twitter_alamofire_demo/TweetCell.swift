@@ -82,6 +82,8 @@ class TweetCell: UITableViewCell {
             self.tweetTextLabel.text = tweet.text
             self.usernameLabel.text = tweet.user?.name
             self.timeLabel.text = tweet.createdAtString
+            self.retweetCountLabel.text = String(tweet.retweetCount as! Int)
+            self.favoriteCountLabel.text = String(tweet.favoriteCount as! Int)
         }
     }
     

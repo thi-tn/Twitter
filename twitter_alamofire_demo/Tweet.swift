@@ -18,6 +18,7 @@ class Tweet {
     var retweeted: Bool? // Configure retweet button
     var user: User? // Author of the Tweet
     var createdAtString: String? // String representation of date posted
+    var replyCount: Int?
     
     // For Retweets
     var retweetedByUser: User?  // user who retweeted if tweet is retweet
